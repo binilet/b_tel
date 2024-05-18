@@ -46,6 +46,7 @@ const BingoBoard: React.FC = () => {
 
   return (
     <div>
+      <h4>Bing</h4>
         <div className="board">
             {numbers.map((num, idx) => (
                 <div key={idx} className={`cell ${calledNumbers.includes(num.toString()) ? 'highlight' : ''}`}>
