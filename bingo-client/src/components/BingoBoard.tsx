@@ -1,6 +1,6 @@
 // src/components/BingoBoard.tsx
 import React, { useState, useEffect } from 'react';
-
+//import { useLocation } from 'react-router-dom';
 import {
     Box,
     Button,
@@ -11,7 +11,7 @@ import {
     Paper,
     Chip
 } from '@mui/material';
-//import { styled } from '@mui/system';
+// import { styled } from '@mui/system';
 
 // const useQuery = () => {
 //     return new URLSearchParams(useLocation().search);
@@ -54,6 +54,18 @@ const BingoBoard: React.FC = () => {
         return () => clearInterval(interval);
     }, []);
 
+    const renderNumbers = (start: number) => {
+        return Array.from({ length: 15 }, (_, i) => start + i).map(num => (
+            <Grid item xs={12} key={num}>
+                <Chip
+                    label={num}
+                    color={calledNumbers.includes(num.toString()) ? 'primary' : 'default'}
+                    sx={{ width: '100%' }}
+                />
+            </Grid>
+        ));
+    };
+
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p: 2, bgcolor: '#f0f0f0', height: '100vh' }}>
             <Card sx={{ width: '100%', maxWidth: 600, mb: 2 }}>
@@ -77,19 +89,33 @@ const BingoBoard: React.FC = () => {
                     </Grid>
                 </CardContent>
             </Card>
-            <Box sx={{ display: 'flex', width: '100%', maxWidth: 600 }}>
+            <Box sx={{ display: 'flex', width: '100%', maxWidth: 800 }}>
                 <Paper elevation={3} sx={{ flex: 1, mr: 2, p: 2 }}>
-                    <Typography variant="h5" align="center" gutterBottom>BINGO</Typography>
-                    <Grid container spacing={1}>
-                        {Array.from({ length: 75 }, (_, i) => (
-                            <Grid item xs={2.4} key={i}>
-                                <Chip
-                                    label={i + 1}
-                                    color={calledNumbers.includes(`B${i + 1}`) ? 'primary' : 'default'}
-                                    sx={{ width: '100%' }}
-                                />
+                    <Grid container justifyContent="space-between">
+                        {['B', 'I', 'N', 'G', 'O'].map((letter, index) => (
+                            <Grid item xs={2.4} key={letter} sx={{ textAlign: 'center' }}>
+                                <Typography variant="h5" sx={{ color: ['#ff5722', '#ff9800', '#4caf50', '#2196f3', '#9c27b0'][index] }}>
+                                    {letter}
+                                </Typography>
                             </Grid>
                         ))}
+                    </Grid>
+                    <Grid container spacing={1}>
+                        <Grid item xs={2.4}>
+                            {renderNumbers(1)}
+                        </Grid>
+                        <Grid item xs={2.4}>
+                            {renderNumbers(16)}
+                        </Grid>
+                        <Grid item xs={2.4}>
+                            {renderNumbers(31)}
+                        </Grid>
+                        <Grid item xs={2.4}>
+                            {renderNumbers(46)}
+                        </Grid>
+                        <Grid item xs={2.4}>
+                            {renderNumbers(61)}
+                        </Grid>
                     </Grid>
                 </Paper>
                 <Box sx={{ flex: 2, p: 2 }}>

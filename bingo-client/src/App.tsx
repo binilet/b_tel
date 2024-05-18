@@ -16,6 +16,9 @@ const theme = createTheme({
             default: '#f0f0f0',
         },
     },
+    typography: {
+        fontFamily: 'Roboto, Arial, sans-serif',
+    },
 });
 
 const App: React.FC = () => {
