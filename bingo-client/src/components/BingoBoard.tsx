@@ -1,16 +1,27 @@
-import React, { useState, useEffect } from "react";
-//import { useLocation } from "react-router-dom";
-import "./BingoBoard.css";
+// src/components/BingoBoard.tsx
+import React, { useState, useEffect } from 'react';
+
+import {
+    Box,
+    Button,
+    Card,
+    CardContent,
+    Grid,
+    Typography,
+    Paper,
+    Chip
+} from '@mui/material';
+//import { styled } from '@mui/system';
 
 // const useQuery = () => {
-//   return new URLSearchParams(useLocation().search);
+//     return new URLSearchParams(useLocation().search);
 // };
 
 const BingoBoard: React.FC = () => {
-  //const query = useQuery();
-  //const userId = query.get("userId");
+    // const query = useQuery();
+    // const userId = query.get('userId');
 
-  const [numbers, setNumbers] = useState<number[]>([]);
+    const [numbers, setNumbers] = useState<number[]>([]);
     const [calledNumbers, setCalledNumbers] = useState<string[]>([]);
     const [currentCall, setCurrentCall] = useState<string | null>(null);
 
@@ -44,50 +55,94 @@ const BingoBoard: React.FC = () => {
     }, []);
 
     return (
-        <div className="bingo-container">
-            <header className="bingo-header">
-                <div className="bingo-header-item">Derash 184</div>
-                <div className="bingo-header-item">Bonus -</div>
-                <div className="bingo-header-item">Players 23</div>
-                <div className="bingo-header-item">Bet 10</div>
-                <div className="bingo-header-item">call 9</div>
-            </header>
-            <div className="bingo-game">
-                <div className="bingo-sidebar">
-                    <div className="bingo-sidebar-header">BINGO</div>
-                    <div className="bingo-sidebar-numbers">
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p: 2, bgcolor: '#f0f0f0', height: '100vh' }}>
+            <Card sx={{ width: '100%', maxWidth: 600, mb: 2 }}>
+                <CardContent>
+                    <Grid container spacing={2} justifyContent="space-between" alignItems="center">
+                        <Grid item>
+                            <Typography variant="h6">Derash 184</Typography>
+                        </Grid>
+                        <Grid item>
+                            <Typography variant="h6">Bonus -</Typography>
+                        </Grid>
+                        <Grid item>
+                            <Typography variant="h6">Players 23</Typography>
+                        </Grid>
+                        <Grid item>
+                            <Typography variant="h6">Bet 10</Typography>
+                        </Grid>
+                        <Grid item>
+                            <Typography variant="h6">Call 9</Typography>
+                        </Grid>
+                    </Grid>
+                </CardContent>
+            </Card>
+            <Box sx={{ display: 'flex', width: '100%', maxWidth: 600 }}>
+                <Paper elevation={3} sx={{ flex: 1, mr: 2, p: 2 }}>
+                    <Typography variant="h5" align="center" gutterBottom>BINGO</Typography>
+                    <Grid container spacing={1}>
                         {Array.from({ length: 75 }, (_, i) => (
-                            <div key={i} className={`bingo-number ${calledNumbers.includes(`B${i + 1}`) ? 'called' : ''}`}>
-                                {i + 1}
-                            </div>
+                            <Grid item xs={2.4} key={i}>
+                                <Chip
+                                    label={i + 1}
+                                    color={calledNumbers.includes(`B${i + 1}`) ? 'primary' : 'default'}
+                                    sx={{ width: '100%' }}
+                                />
+                            </Grid>
                         ))}
-                    </div>
-                </div>
-                <div className="bingo-main">
-                    <div className="bingo-status">
-                        <div>Count Down</div>
-                        <div>Started</div>
-                    </div>
-                    <div className="current-call">
-                        <div>Current Call</div>
-                        <div className="current-call-number">{currentCall}</div>
-                    </div>
-                    <div className="bingo-board">
+                    </Grid>
+                </Paper>
+                <Box sx={{ flex: 2, p: 2 }}>
+                    <Card sx={{ mb: 2 }}>
+                        <CardContent>
+                            <Grid container justifyContent="space-between" alignItems="center">
+                                <Grid item>
+                                    <Typography variant="h6">Count Down</Typography>
+                                </Grid>
+                                <Grid item>
+                                    <Typography variant="h6">Started</Typography>
+                                </Grid>
+                            </Grid>
+                        </CardContent>
+                    </Card>
+                    <Card sx={{ mb: 2 }}>
+                        <CardContent>
+                            <Typography variant="h6" align="center">Current Call</Typography>
+                            <Typography variant="h4" align="center" color="secondary">{currentCall}</Typography>
+                        </CardContent>
+                    </Card>
+                    <Grid container spacing={2} sx={{ mb: 2 }}>
                         {numbers.map((num, idx) => (
-                            <div key={idx} className={`cell ${calledNumbers.includes(num.toString()) ? 'highlight' : ''}`}>
-                                {num}
-                            </div>
+                            <Grid item xs={2.4} key={idx}>
+                                <Paper
+                                    sx={{
+                                        p: 1,
+                                        textAlign: 'center',
+                                        bgcolor: calledNumbers.includes(num.toString()) ? 'primary.main' : 'background.paper',
+                                        color: calledNumbers.includes(num.toString()) ? 'common.white' : 'text.primary',
+                                        fontWeight: 'bold'
+                                    }}
+                                >
+                                    {num}
+                                </Paper>
+                            </Grid>
                         ))}
-                    </div>
-                    <div className="bingo-controls">
-                        <button className="bingo-button bingo">BINGO!</button>
-                        <button className="bingo-button refresh">Refresh</button>
-                        <button className="bingo-button leave">Leave</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    </Grid>
+                    <Grid container spacing={2}>
+                        <Grid item xs={4}>
+                            <Button variant="contained" color="secondary" fullWidth>BINGO!</Button>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Button variant="contained" color="primary" fullWidth>Refresh</Button>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Button variant="contained" color="error" fullWidth>Leave</Button>
+                        </Grid>
+                    </Grid>
+                </Box>
+            </Box>
+        </Box>
     );
-
 };
+
 export default BingoBoard;
