@@ -138,10 +138,19 @@ const BingoBoard: React.FC = () => {
                             <Typography variant="h4" align="center" color="secondary">{currentCall}</Typography>
                         </CardContent>
                     </Card>
+                    <Grid container justifyContent="space-between">
+                        {['B', 'I', 'N', 'G', 'O'].map((letter, index) => (
+                            <Grid item xs={2.4} key={letter} sx={{ textAlign: 'center' }}>
+                                <Typography variant="h6" sx={{ color: ['red', 'green', 'brown', 'dark', 'blue'][index] }}>
+                                    {letter}
+                                </Typography>
+                            </Grid>
+                        ))}
+                    </Grid>
                     <Grid container spacing={2} sx={{ mb: 2 }}>
                         {numbers.map((num, idx) => (
                             <Grid item xs={2.4} key={idx}>
-                                <Paper
+                                <Paper style={{padding:'0px'}}
                                     sx={{
                                         p: 1,
                                         textAlign: 'center',
@@ -155,7 +164,9 @@ const BingoBoard: React.FC = () => {
                             </Grid>
                         ))}
                     </Grid>
-                    <Grid container spacing={2}>
+                </Box>
+            </Box>
+            <Grid container spacing={4}>
                         <Grid item xs={4}>
                             <Button variant="contained" color="secondary" fullWidth>BINGO!</Button>
                         </Grid>
@@ -166,8 +177,6 @@ const BingoBoard: React.FC = () => {
                             <Button variant="contained" color="error" fullWidth>Leave</Button>
                         </Grid>
                     </Grid>
-                </Box>
-            </Box>
         </Box>
     );
 };
