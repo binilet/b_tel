@@ -24,6 +24,7 @@ const BingoBoard: React.FC = () => {
     const [numbers, setNumbers] = useState<number[]>([]);
     const [calledNumbers, setCalledNumbers] = useState<string[]>([]);
     const [currentCall, setCurrentCall] = useState<string | null>(null);
+    const [lastFiveCalls,setLastFiveCalls] = useState<string[]>([]);
 
     useEffect(() => {
         const generateBoard = () => {
@@ -47,8 +48,9 @@ const BingoBoard: React.FC = () => {
             const columns = ['B', 'I', 'N', 'G', 'O'];
             const column = columns[Math.floor(Math.random() * columns.length)];
             const number = Math.floor(Math.random() * 15) + 1 + (columns.indexOf(column) * 15);
-            const call = `${column}${number}`;
+            const call = `${column} - ${number}`;
             setCurrentCall(call);
+            setLastFiveCalls(prevNumbers => [...prevNumbers, call])
             setCalledNumbers(prevNumbers => [...prevNumbers, call]);
         }, 5000);
         return () => clearInterval(interval);
@@ -95,7 +97,7 @@ const BingoBoard: React.FC = () => {
                     <Grid container justifyContent="space-between">
                         {['B', 'I', 'N', 'G', 'O'].map((letter, index) => (
                             <Grid item xs={2.4} key={letter} sx={{ textAlign: 'center' }}>
-                                <Typography variant="h6" sx={{ color: ['red', 'red', 'red', 'red', 'red'][index] }}>
+                                <Typography variant="h6" style={{fontWeight:'bolder'}} sx={{ color: ['red', 'red', 'red', 'red', 'red'][index] }}>
                                     {letter}
                                 </Typography>
                             </Grid>
@@ -141,29 +143,40 @@ const BingoBoard: React.FC = () => {
                     <Grid container justifyContent="space-between">
                         {['B', 'I', 'N', 'G', 'O'].map((letter, index) => (
                             <Grid item xs={2.4} key={letter} sx={{ textAlign: 'center' }}>
-                                <Typography variant="h6" sx={{ color: ['red', 'green', 'brown', 'dark', 'blue'][index] }}>
-                                    {letter}
-                                </Typography>
+                                
+                                  <Typography variant="h5" style={{fontWeight:'bolder'}} sx={{ color: ['red', 'green', 'brown', 'dark', 'blue'][index] }}>
+                                      {letter}
+                                  </Typography>
+                                
                             </Grid>
                         ))}
                     </Grid>
-                    <Grid container spacing={2} sx={{ mb: 2 }}>
+                    <Grid container spacing={0} sx={{ mb: 2 }}>
+                        
                         {numbers.map((num, idx) => (
                             <Grid item xs={2.4} key={idx}>
-                                <Paper style={{padding:'0px'}}
+                                <Paper style={{padding:'10px'}}
                                     sx={{
-                                        p: 1,
-                                        textAlign: 'center',
+                                        p: 5,
+                                        //textAlign: 'center',
                                         bgcolor: calledNumbers.includes(num.toString()) ? 'primary.main' : 'background.paper',
                                         color: calledNumbers.includes(num.toString()) ? 'common.white' : 'text.primary',
-                                        fontWeight: 'bold'
+                                        fontWeight: 'bolder',
+                                        borderRadius:'0px'
                                     }}
                                 >
                                     {num}
                                 </Paper>
                             </Grid>
                         ))}
+                        
                     </Grid>
+                    <>
+                    {lastFiveCalls && lastFiveCalls.map(val=>{
+                      {val}
+                    })}
+                    </>
+                    
                 </Box>
             </Box>
             <Grid container spacing={4}>
