@@ -13,11 +13,11 @@ const theme = createTheme({
             main: '#d32f2f',
         },
         background: {
-            default: '#f0f0f0',
+            default: '#121212',
         },
     },
     typography: {
-        fontFamily: 'Roboto, Arial, sans-serif',
+        fontFamily: 'ZCOOL QingKe HuangYou,Roboto, Arial, sans-serif',
     },
 });
 

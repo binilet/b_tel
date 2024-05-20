@@ -57,44 +57,45 @@ const BingoBoard: React.FC = () => {
     const renderNumbers = (start: number) => {
         return Array.from({ length: 15 }, (_, i) => start + i).map(num => (
             <Grid item xs={12} key={num}>
-                <Chip
+              {num}
+                {/* <Chip
                     label={num}
                     color={calledNumbers.includes(num.toString()) ? 'primary' : 'default'}
                     sx={{ width: '100%' }}
-                />
+                    variant="outlined"
+                /> */}
             </Grid>
         ));
     };
 
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p: 2, bgcolor: '#f0f0f0', height: '100vh' }}>
-            <Card sx={{ width: '100%', maxWidth: 600, mb: 2 }}>
-                <CardContent>
-                    <Grid container spacing={2} justifyContent="space-between" alignItems="center">
-                        <Grid item>
-                            <Typography variant="h6">Derash 184</Typography>
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p: 2, bgcolor: '#f0f0f0', height: '100vh',gap:'10px' }}>
+            
+                    <Grid container spacing={2}>
+                        <Grid item xs={4}>
+                            <Button variant="contained" color="primary" fullWidth>Win - 150</Button>
                         </Grid>
-                        <Grid item>
-                            <Typography variant="h6">Bonus -</Typography>
+                        <Grid item xs={4}>
+                            <Button variant="contained" color="primary" fullWidth>Bonus  - 16</Button>
                         </Grid>
-                        <Grid item>
-                            <Typography variant="h6">Players 23</Typography>
+                        <Grid item xs={4}>
+                            <Button variant="contained" color="primary" fullWidth>Bet 10</Button>
                         </Grid>
-                        <Grid item>
-                            <Typography variant="h6">Bet 10</Typography>
+                        {/* <Grid item xs={4}>
+                            <Button variant="contained" color="primary" fullWidth>Leave</Button>
                         </Grid>
-                        <Grid item>
-                            <Typography variant="h6">Call 9</Typography>
-                        </Grid>
+                        <Grid item xs={4}>
+                            <Button variant="contained" color="primary" fullWidth>Leave</Button>
+                        </Grid> */}
+                    
                     </Grid>
-                </CardContent>
-            </Card>
-            <Box sx={{ display: 'flex', width: '100%', maxWidth: 800 }}>
-                <Paper elevation={3} sx={{ flex: 1, mr: 2, p: 2 }}>
+               
+            <Box sx={{ display: 'flex', width: '100%' }}>
+                <Paper elevation={0} sx={{ flex: 1, mr: 2, p: 2 }}>
                     <Grid container justifyContent="space-between">
                         {['B', 'I', 'N', 'G', 'O'].map((letter, index) => (
                             <Grid item xs={2.4} key={letter} sx={{ textAlign: 'center' }}>
-                                <Typography variant="h5" sx={{ color: ['#ff5722', '#ff9800', '#4caf50', '#2196f3', '#9c27b0'][index] }}>
+                                <Typography variant="h6" sx={{ color: ['red', 'red', 'red', 'red', 'red'][index] }}>
                                     {letter}
                                 </Typography>
                             </Grid>
@@ -119,7 +120,7 @@ const BingoBoard: React.FC = () => {
                     </Grid>
                 </Paper>
                 <Box sx={{ flex: 2, p: 2 }}>
-                    <Card sx={{ mb: 2 }}>
+                    {/* <Card sx={{ mb: 2 }}>
                         <CardContent>
                             <Grid container justifyContent="space-between" alignItems="center">
                                 <Grid item>
@@ -130,10 +131,10 @@ const BingoBoard: React.FC = () => {
                                 </Grid>
                             </Grid>
                         </CardContent>
-                    </Card>
-                    <Card sx={{ mb: 2 }}>
+                    </Card> */}
+                    <Card sx={{ mb: 2 }} style={{background:'#121212'}}>
                         <CardContent>
-                            <Typography variant="h6" align="center">Current Call</Typography>
+                            <Typography variant="h6" align="center" style={{color:'white'}} >Current Call</Typography>
                             <Typography variant="h4" align="center" color="secondary">{currentCall}</Typography>
                         </CardContent>
                     </Card>
