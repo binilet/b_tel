@@ -71,7 +71,7 @@ const BingoBoard: React.FC = () => {
     };
 
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p: 2, bgcolor: '#f0f0f0', height: '100vh',gap:'10px' }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p: 2, bgcolor: 'lavender', height: '100vh',gap:'10px' }}>
             
                     <Grid container spacing={2}>
                         <Grid item xs={4}>
