@@ -9,7 +9,8 @@ const Stake: React.FC = () => {
     
     const handleCardClick = (amount: number) => {
         //setSelectedCard({ amount, games });
-        navigate(`/gameWindow/${amount}`);
+        //navigate(`/gameWindow/${amount}`);
+        navigate('/boardSelector');
         
     };
 

@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import BingoBoard from './components/BingoBoard';
 import Stake from './components/Stake';
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import BoardSelector from './components/BoardSelector';
 
 const theme = createTheme({
     palette: {
@@ -32,6 +33,7 @@ const App: React.FC = () => {
                         <Route path="/" element={<Stake/>}/>
                         <Route path="/gameWindow/:betAmount" element={<BingoBoard/>} />
                         <Route path="/stake" element={<Stake/>} />
+                        <Route path="/boardSelector" element={<BoardSelector/>} />
                     </Routes>
                 </div>
             </Router>
