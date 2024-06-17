@@ -80,7 +80,7 @@ const BingoBoard: React.FC = () => {
                             <Button variant="contained" color="primary" fullWidth>Bonus  - 16</Button>
                         </Grid>
                         <Grid item xs={4}>
-                            <Button variant="contained" color="primary" fullWidth>Bet {betAmount}</Button>
+                            <Button variant="contained" color="primary" fullWidth>Bet {` - ${betAmount}`}</Button>
                         </Grid>
                         {/* <Grid item xs={4}>
                             <Button variant="contained" color="primary" fullWidth>Leave</Button>

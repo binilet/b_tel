@@ -20,28 +20,28 @@ const Stake: React.FC = () => {
         <Grid item xs={6} sm={6} onClick={() => handleCardClick(10)}>
             <StakeCard amount={10} games={4}/>
         </Grid>
-        <Grid item xs={6} sm={6}>
+        <Grid item xs={6} sm={6} onClick={() => handleCardClick(20)}>
             <StakeCard amount={20} games={4}/>
         </Grid>
-        <Grid item xs={6} sm={6}>
+        <Grid item xs={6} sm={6} onClick={() => handleCardClick(30)}>
             <StakeCard amount={30} games={4}/>
         </Grid>
-        <Grid item xs={6} sm={6}>
+        <Grid item xs={6} sm={6} onClick={() => handleCardClick(40)}>
             <StakeCard amount={40} games={4}/>
         </Grid>
-        <Grid item xs={6} sm={6}>
+        <Grid item xs={6} sm={6} onClick={() => handleCardClick(50)}>
             <StakeCard amount={50} games={4}/>
         </Grid>
-        <Grid item xs={6} sm={6}>
+        <Grid item xs={6} sm={6} onClick={() => handleCardClick(100)}>
             <StakeCard amount={100} games={4}/>
         </Grid>
-        <Grid item xs={6} sm={6}>
+        <Grid item xs={6} sm={6} onClick={() => handleCardClick(150)}>
             <StakeCard amount={150} games={4}/>
         </Grid>
-        <Grid item xs={6} sm={6}>
+        <Grid item xs={6} sm={6} onClick={() => handleCardClick(200)}>
             <StakeCard amount={200} games={4}/>
         </Grid>
-        <Grid item xs={6} sm={6}>
+        <Grid item xs={6} sm={6} onClick={() => handleCardClick(500)}>
             <StakeCard amount={500} games={4}/>
         </Grid>
         <Grid item xs={6} sm={6}>
