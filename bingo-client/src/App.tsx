@@ -2,6 +2,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import BingoBoard from './components/BingoBoard';
+import Stake from './components/Stake';
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 
 const theme = createTheme({
@@ -29,6 +30,7 @@ const App: React.FC = () => {
                 <div className="App">
                     <Routes>
                         <Route path="/" Component={BingoBoard} />
+                        <Route path="/stake" Component={Stake} />
                     </Routes>
                 </div>
             </Router>
