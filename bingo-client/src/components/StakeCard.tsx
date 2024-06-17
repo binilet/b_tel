@@ -19,7 +19,7 @@ const theme = createTheme({
   },
 });
 
-export default function StakeCard({amount,games,isPrivate}) {
+export default function StakeCard({amount,games,isPrivate=false}) {
   return (
     <ThemeProvider theme={theme}>
       <Box

@@ -11,15 +11,14 @@ import {
     Paper,
    
 } from '@mui/material';
-// import { styled } from '@mui/system';
 
-// const useQuery = () => {
-//     return new URLSearchParams(useLocation().search);
-// };
+import { useParams } from 'react-router-dom';
 
 const BingoBoard: React.FC = () => {
     // const query = useQuery();
     // const userId = query.get('userId');
+
+    const {betAmount} = useParams();
 
     const [numbers, setNumbers] = useState<number[]>([]);
     const [calledNumbers, setCalledNumbers] = useState<string[]>([]);
@@ -81,7 +80,7 @@ const BingoBoard: React.FC = () => {
                             <Button variant="contained" color="primary" fullWidth>Bonus  - 16</Button>
                         </Grid>
                         <Grid item xs={4}>
-                            <Button variant="contained" color="primary" fullWidth>Bet 10</Button>
+                            <Button variant="contained" color="primary" fullWidth>Bet {betAmount}</Button>
                         </Grid>
                         {/* <Grid item xs={4}>
                             <Button variant="contained" color="primary" fullWidth>Leave</Button>

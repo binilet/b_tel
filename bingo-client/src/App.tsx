@@ -29,8 +29,9 @@ const App: React.FC = () => {
             <Router>
                 <div className="App">
                     <Routes>
-                        <Route path="/" Component={BingoBoard} />
-                        <Route path="/stake" Component={Stake} />
+                        <Route path="/" element={<Stake/>}/>
+                        <Route path="/gameWindow/:betAmount" element={<BingoBoard/>} />
+                        <Route path="/stake" element={<Stake/>} />
                     </Routes>
                 </div>
             </Router>
