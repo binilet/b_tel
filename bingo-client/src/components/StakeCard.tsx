@@ -19,7 +19,13 @@ const theme = createTheme({
   },
 });
 
-export default function StakeCard({amount,games,isPrivate=false}) {
+interface StakeCardProps {
+    amount: number;
+    games: number; // Assuming games is an array of strings
+    isPrivate?: boolean; // Optional boolean property with default value
+  }
+
+  const StakeCard: React.FC<StakeCardProps> = ({ amount, games, isPrivate = false }) => {
   return (
     <ThemeProvider theme={theme}>
       <Box
@@ -52,3 +58,5 @@ export default function StakeCard({amount,games,isPrivate=false}) {
     </ThemeProvider>
   );
 }
+
+export default StakeCard;

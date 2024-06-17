@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+//import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import StakeCard from './StakeCard';
 import { Grid } from '@mui/material';
-import BingoBoard from './BingoBoard';
 
 const Stake: React.FC = () => {
 
     const navigate= useNavigate();
     
-    const handleCardClick = (amount) => {
+    const handleCardClick = (amount: number) => {
         //setSelectedCard({ amount, games });
         navigate(`/gameWindow/${amount}`);
         
