@@ -1,4 +1,3 @@
-//import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import StakeCard from './StakeCard';
 import { Grid } from '@mui/material';
@@ -12,7 +11,6 @@ const Stake: React.FC = () => {
         //navigate(`/gameWindow/${amount}`);
         console.log(amount)
         navigate('/boardSelector');
-        
     };
 
     return (
@@ -21,7 +19,7 @@ const Stake: React.FC = () => {
         <Grid item xs={6} sm={6} onClick={() => handleCardClick(10)}>
             <StakeCard amount={10} games={4}/>
         </Grid>
-        <Grid item xs={6} sm={6} onClick={() => handleCardClick(20)}>
+        <Grid item xs={6} sm={6}   onClick={() => handleCardClick(20)}>
             <StakeCard amount={20} games={4}/>
         </Grid>
         <Grid item xs={6} sm={6} onClick={() => handleCardClick(30)}>

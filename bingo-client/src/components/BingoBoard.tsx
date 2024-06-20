@@ -12,11 +12,17 @@ import {
    
 } from '@mui/material';
 
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+// import CachedIcon from '@mui/icons-material/Cached';
+import AssistantIcon from '@mui/icons-material/Assistant';
+
+import { useNavigate } from 'react-router-dom';
+
 import { useParams } from 'react-router-dom';
 
 const BingoBoard: React.FC = () => {
-    // const query = useQuery();
-    // const userId = query.get('userId');
+    
+    const navigate= useNavigate();
 
     const {betAmount} = useParams();
 
@@ -24,6 +30,10 @@ const BingoBoard: React.FC = () => {
     const [calledNumbers, setCalledNumbers] = useState<string[]>([]);
     const [currentCall, setCurrentCall] = useState<string | null>(null);
     const [lastFiveCalls,setLastFiveCalls] = useState<string[]>([]);
+
+    const handleLeaveClick = () => {
+        navigate('/stake');
+    }
 
     useEffect(() => {
         const generateBoard = () => {
@@ -74,13 +84,13 @@ const BingoBoard: React.FC = () => {
             
                     <Grid container spacing={2}>
                         <Grid item xs={4}>
-                            <Button variant="contained" color="primary" fullWidth>Win - 150</Button>
+                            <Button variant="contained" color="primary" fullWidth>ደራሽ - 150</Button>
                         </Grid>
                         <Grid item xs={4}>
-                            <Button variant="contained" color="primary" fullWidth>Bonus  - 16</Button>
+                            <Button variant="contained" color="primary" fullWidth>ቦነስ  - 16</Button>
                         </Grid>
                         <Grid item xs={4}>
-                            <Button variant="contained" color="primary" fullWidth>Bet {` - ${betAmount}`}</Button>
+                            <Button variant="contained" color="primary" fullWidth>ምድብ {` - ${betAmount}`}</Button>
                         </Grid>
                         {/* <Grid item xs={4}>
                             <Button variant="contained" color="primary" fullWidth>Leave</Button>
@@ -179,14 +189,14 @@ const BingoBoard: React.FC = () => {
                 </Box>
             </Box>
             <Grid container spacing={4}>
-                        <Grid item xs={4}>
-                            <Button variant="contained" color="secondary" fullWidth>BINGO!</Button>
+                        <Grid item xs={6}>
+                            <Button variant="contained" fullWidth startIcon={<AssistantIcon />}>ቢንጎ!</Button>
                         </Grid>
-                        <Grid item xs={4}>
-                            <Button variant="contained" color="primary" fullWidth>Refresh</Button>
-                        </Grid>
-                        <Grid item xs={4}>
-                            <Button variant="contained" color="error" fullWidth>Leave</Button>
+                        {/* <Grid item xs={4}>
+                            <Button variant="contained" color="primary" fullWidth endIcon={<CachedIcon />}>Refresh</Button>
+                        </Grid> */}
+                        <Grid item xs={6}>
+                            <Button variant="contained" color="error" fullWidth endIcon={<ExitToAppIcon />} onClick={handleLeaveClick}>ውጣ</Button>
                         </Grid>
                     </Grid>
         </Box>

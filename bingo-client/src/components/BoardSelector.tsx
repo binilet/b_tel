@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { Box, styled } from '@mui/material';
+import { Box, styled,Stack,Button } from '@mui/material';
+import ReplyIcon from '@mui/icons-material/Reply';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import StakeCard from './StakeCard';
+import { useNavigate } from 'react-router-dom';
 
 const GridBox = styled(Box)`
   display: grid;
@@ -25,11 +28,22 @@ const CellBox = styled(Box)<{ selected: boolean }>`
 `;
 
 const BoardSelector: React.FC = () => {
+
+  const navigate= useNavigate();
+
   const [selectedCell, setSelectedCell] = useState<number | null>(null);
 
   const handleCellClick = (index: number) => {
     setSelectedCell(--index);
   };
+
+  const handleGoBack = () =>{
+    navigate('/stake')
+  }
+
+  const handleGoToMain = () =>{
+    navigate('/gameWindow/5')
+  }
 
   return (
     <>
@@ -45,6 +59,14 @@ const BoardSelector: React.FC = () => {
         </CellBox>
       ))}
     </GridBox>
+     <Stack direction="row" spacing={2} style={{backgroundColor:'lavender', display:'flex',justifyContent:'space-around',padding:'20px'}}>
+      <Button variant="contained" startIcon={<ReplyIcon />} onClick={handleGoBack}>
+        ተመለስ
+      </Button>
+      <Button variant="contained" endIcon={<PlayArrowIcon />} onClick={handleGoToMain}>
+        ጀምር
+      </Button>
+    </Stack>
     </>
     
   );
