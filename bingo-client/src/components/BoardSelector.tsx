@@ -66,7 +66,7 @@ const BoardSelector: React.FC = () => {
   }
 
   return (
-    <>
+    <div style={{backgroundColor:'red'}}>
       <StakeCard amount={45} games={5} />
       <GridBox>
         {Array.from({ length: 100 }, (_, index) => index + 1).map(
@@ -128,7 +128,7 @@ const BoardSelector: React.FC = () => {
           backgroundColor: "lavender",
           display: "flex",
           justifyContent: "space-around",
-          padding: "20px",
+          padding: "10px",
         }}
       >
         <Button
@@ -146,7 +146,7 @@ const BoardSelector: React.FC = () => {
           ጀምር
         </Button>
       </Stack>
-    </>
+    </div>
   );
 };
 
