@@ -19,12 +19,13 @@ const CellBox = styled(Box)<{ selected: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${props => (props.selected ? 'green' : 'white')};
+  background-color: ${props => (props.selected ? 'green' : 'lavender')};
+  color: ${props => (props.selected ? 'white' : 'black')};
   border: 1px solid gray;
   cursor: pointer;
   font-weight:bold;
   border-radius:4px;
-    background-color: lavender;
+   
 `;
 
 const BoardSelector: React.FC = () => {
@@ -34,10 +35,11 @@ const BoardSelector: React.FC = () => {
   const [numbers, setNumbers] = useState<number[]>([]);
 
   const [selectedCell, setSelectedCell] = useState<number | null>(null);
+  
 
   const handleCellClick = (index: number) => {
+    
     setSelectedCell(index);
-    console.log(index);
 
     const generateBoard = () => {
       const columns = ['B', 'I', 'N', 'G', 'O'];
@@ -65,63 +67,86 @@ const BoardSelector: React.FC = () => {
 
   return (
     <>
-    <StakeCard amount={45} games={5}/>
-    <GridBox>
-      {Array.from({ length: 100 }, (_, index) => (
-        <CellBox
-          key={index}
-          onClick={() => handleCellClick(index)}
-          selected={selectedCell === index}
+      <StakeCard amount={45} games={5} />
+      <GridBox>
+        {Array.from({ length: 100 }, (_, index) => index + 1).map(
+          (value, index) => (
+            <CellBox
+              key={index}
+              onClick={() => handleCellClick(value)}
+              selected={selectedCell === value}
+            >
+              {value}
+            </CellBox>
+          )
+        )}
+      </GridBox>
+
+      {selectedCell && (
+        <Stack style={{ backgroundColor: "lavender" }}>
+          <h6>{selectedCell}</h6>
+          <Grid container justifyContent="space-between">
+            {["B", "I", "N", "G", "O"].map((letter, index) => (
+              <Grid item xs={2.4} key={letter} sx={{ textAlign: "center" }}>
+                <Typography
+                  variant="h5"
+                  style={{ fontWeight: "bolder" }}
+                  sx={{
+                    color: ["red", "green", "brown", "dark", "blue"][index],
+                  }}
+                >
+                  {letter}
+                </Typography>
+              </Grid>
+            ))}
+          </Grid>
+          <Grid container spacing={0} sx={{ mb: 2 }}>
+            {numbers.map((num, idx) => (
+              <Grid item xs={2.4} key={idx}>
+                <Paper
+                  style={{ padding: "10px" }}
+                  sx={{
+                    p: 5,
+                    //textAlign: 'center',
+                    //bgcolor: calledNumbers.includes(num.toString()) ? 'primary.main' : 'background.paper',
+                    //color: calledNumbers.includes(num.toString()) ? 'common.white' : 'text.primary',
+                    fontWeight: "bolder",
+                    borderRadius: "0px",
+                  }}
+                >
+                  {num}
+                </Paper>
+              </Grid>
+            ))}
+          </Grid>
+        </Stack>
+      )}
+      <Stack
+        direction="row"
+        spacing={2}
+        style={{
+          backgroundColor: "lavender",
+          display: "flex",
+          justifyContent: "space-around",
+          padding: "20px",
+        }}
+      >
+        <Button
+          variant="contained"
+          startIcon={<ReplyIcon />}
+          onClick={handleGoBack}
         >
-          {++index}
-        </CellBox>
-      ))}
-    </GridBox>
-    
-      {selectedCell && 
-      <Stack style={{backgroundColor:'lavender'}}>
-                <Grid container justifyContent="space-between">
-                        {['B', 'I', 'N', 'G', 'O'].map((letter, index) => (
-                            <Grid item xs={2.4} key={letter} sx={{ textAlign: 'center' }}>
-                                
-                                  <Typography variant="h5" style={{fontWeight:'bolder'}} sx={{ color: ['red', 'green', 'brown', 'dark', 'blue'][index] }}>
-                                      {letter}
-                                  </Typography>
-                                
-                            </Grid>
-                        ))}
-                    </Grid>
-                    <Grid container spacing={0} sx={{ mb: 2 }}>
-                        
-                        {numbers.map((num, idx) => (
-                            <Grid item xs={2.4} key={idx}>
-                                <Paper style={{padding:'10px'}}
-                                    sx={{
-                                        p: 5,
-                                        //textAlign: 'center',
-                                        //bgcolor: calledNumbers.includes(num.toString()) ? 'primary.main' : 'background.paper',
-                                        //color: calledNumbers.includes(num.toString()) ? 'common.white' : 'text.primary',
-                                        fontWeight: 'bolder',
-                                        borderRadius:'0px'
-                                    }}
-                                >
-                                    {num}
-                                </Paper>
-                            </Grid>
-                        ))}
-                    </Grid>
-    </Stack>
-                      }
-     <Stack direction="row" spacing={2} style={{backgroundColor:'lavender', display:'flex',justifyContent:'space-around',padding:'20px'}}>
-      <Button variant="contained" startIcon={<ReplyIcon />} onClick={handleGoBack}>
-        ተመለስ
-      </Button>
-      <Button variant="contained" endIcon={<PlayArrowIcon />} onClick={handleGoToMain}>
-        ጀምር
-      </Button>
-    </Stack>
+          ተመለስ
+        </Button>
+        <Button
+          variant="contained"
+          endIcon={<PlayArrowIcon />}
+          onClick={handleGoToMain}
+        >
+          ጀምር
+        </Button>
+      </Stack>
     </>
-    
   );
 };
 
