@@ -84,7 +84,6 @@ const BoardSelector: React.FC = () => {
 
       {selectedCell && (
         <Stack style={{ backgroundColor: "lavender" }}>
-          <h6>{selectedCell}</h6>
           <Grid container justifyContent="space-between">
             {["B", "I", "N", "G", "O"].map((letter, index) => (
               <Grid item xs={2.4} key={letter} sx={{ textAlign: "center" }}>
