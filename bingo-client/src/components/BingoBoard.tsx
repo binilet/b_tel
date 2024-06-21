@@ -131,18 +131,6 @@ const BingoBoard: React.FC = () => {
                     </Grid>
                 </Paper>
                 <Box sx={{ flex: 2, p: 2 }}>
-                    {/* <Card sx={{ mb: 2 }}>
-                        <CardContent>
-                            <Grid container justifyContent="space-between" alignItems="center">
-                                <Grid item>
-                                    <Typography variant="h6">Count Down</Typography>
-                                </Grid>
-                                <Grid item>
-                                    <Typography variant="h6">Started</Typography>
-                                </Grid>
-                            </Grid>
-                        </CardContent>
-                    </Card> */}
                     <Card sx={{ mb: 2 }} style={{background:'#121212'}}>
                         <CardContent>
                             <Typography variant="h6" align="center" style={{color:'white'}} >Current Call</Typography>
@@ -178,7 +166,6 @@ const BingoBoard: React.FC = () => {
                                 </Paper>
                             </Grid>
                         ))}
-                        
                     </Grid>
                     <>
                     {lastFiveCalls && lastFiveCalls.map(val=>{

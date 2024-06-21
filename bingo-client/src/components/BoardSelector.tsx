@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, styled,Stack,Button } from '@mui/material';
+import { Box, styled,Stack,Button,Grid,Typography,Paper } from '@mui/material';
 import ReplyIcon from '@mui/icons-material/Reply';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import StakeCard from './StakeCard';
@@ -19,7 +19,7 @@ const CellBox = styled(Box)<{ selected: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${props => (props.selected ? 'lightblue' : 'white')};
+  background-color: ${props => (props.selected ? 'green' : 'white')};
   border: 1px solid gray;
   cursor: pointer;
   font-weight:bold;
@@ -31,10 +31,28 @@ const BoardSelector: React.FC = () => {
 
   const navigate= useNavigate();
 
+  const [numbers, setNumbers] = useState<number[]>([]);
+
   const [selectedCell, setSelectedCell] = useState<number | null>(null);
 
   const handleCellClick = (index: number) => {
-    setSelectedCell(--index);
+    setSelectedCell(index);
+    console.log(index);
+
+    const generateBoard = () => {
+      const columns = ['B', 'I', 'N', 'G', 'O'];
+      let board: number[] = [];
+      for (let i = 0; i < columns.length; i++) {
+          let colNumbers = [];
+          for (let j = 1; j <= 15; j++) {
+              colNumbers.push(j + (i * 15));
+          }
+          colNumbers = colNumbers.sort(() => Math.random() - 0.5).slice(0, 5);
+          board = [...board, ...colNumbers];
+      }
+      setNumbers(board);
+  };
+    generateBoard();
   };
 
   const handleGoBack = () =>{
@@ -59,6 +77,41 @@ const BoardSelector: React.FC = () => {
         </CellBox>
       ))}
     </GridBox>
+    
+      {selectedCell && 
+      <Stack style={{backgroundColor:'lavender'}}>
+                <Grid container justifyContent="space-between">
+                        {['B', 'I', 'N', 'G', 'O'].map((letter, index) => (
+                            <Grid item xs={2.4} key={letter} sx={{ textAlign: 'center' }}>
+                                
+                                  <Typography variant="h5" style={{fontWeight:'bolder'}} sx={{ color: ['red', 'green', 'brown', 'dark', 'blue'][index] }}>
+                                      {letter}
+                                  </Typography>
+                                
+                            </Grid>
+                        ))}
+                    </Grid>
+                    <Grid container spacing={0} sx={{ mb: 2 }}>
+                        
+                        {numbers.map((num, idx) => (
+                            <Grid item xs={2.4} key={idx}>
+                                <Paper style={{padding:'10px'}}
+                                    sx={{
+                                        p: 5,
+                                        //textAlign: 'center',
+                                        //bgcolor: calledNumbers.includes(num.toString()) ? 'primary.main' : 'background.paper',
+                                        //color: calledNumbers.includes(num.toString()) ? 'common.white' : 'text.primary',
+                                        fontWeight: 'bolder',
+                                        borderRadius:'0px'
+                                    }}
+                                >
+                                    {num}
+                                </Paper>
+                            </Grid>
+                        ))}
+                    </Grid>
+    </Stack>
+                      }
      <Stack direction="row" spacing={2} style={{backgroundColor:'lavender', display:'flex',justifyContent:'space-around',padding:'20px'}}>
       <Button variant="contained" startIcon={<ReplyIcon />} onClick={handleGoBack}>
         ተመለስ
